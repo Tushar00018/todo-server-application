@@ -1,8 +1,10 @@
 package com.myTodoApplication.TodoApplication.controller;
 
+import com.myTodoApplication.TodoApplication.dto.TodoDto;
 import com.myTodoApplication.TodoApplication.entity.TodoEntity;
 import com.myTodoApplication.TodoApplication.service.TodoService;
 import com.myTodoApplication.TodoApplication.utility.ApiResponse;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,18 +16,17 @@ import java.util.List;
 public class TodoController {
 
     TodoService todoService;
-
     public TodoController(TodoService todoService) {
         this.todoService = todoService;
     }
 
     @GetMapping()
-    public List<TodoEntity> getTodos() {
+    public ResponseEntity<ApiResponse<List<TodoEntity>>> getTodos() {
         return todoService.getTodos();
     }
 
     @PostMapping()
-    public ApiResponse<Void> addTodo(@RequestBody TodoEntity todo) {
+    public ResponseEntity<ApiResponse<Void>> addTodo(@RequestBody TodoDto todo) {
         return todoService.addTodo(todo);
     }
 }

@@ -43,28 +43,28 @@ public class UserEntity {
         return Id;
     }
 
-    public void setId(Long id) {
-        Id = id;
-    }
-
     public String getUserName() {
         return userName;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public List<TodoEntity> getTodos() {
+        return todos;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setId(Long id) {
+        Id = id;
     }
 
-    public List<TodoEntity> getTodos() {
-        return todos;
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public void setTodos(List<TodoEntity> todos) {
