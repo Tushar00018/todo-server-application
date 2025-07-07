@@ -62,5 +62,6 @@ public class TodoEntity {
 
     public void setUser(UserEntity user) {
         this.user = user;
+        System.out.println("hello");
     }
 }
