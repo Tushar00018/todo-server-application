@@ -1,14 +1,13 @@
 package com.myTodoApplication.TodoApplication.controller;
 
 import com.myTodoApplication.TodoApplication.dto.UserDto;
+import com.myTodoApplication.TodoApplication.entity.UserEntity;
 import com.myTodoApplication.TodoApplication.service.UserService;
-import com.myTodoApplication.TodoApplication.utility.ApiResponse;
-import org.springframework.http.HttpStatus;
+import com.myTodoApplication.TodoApplication.utility.response.ApiResponse;
+import com.myTodoApplication.TodoApplication.utility.response.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,7 +22,12 @@ public class UserController {
     }
 
     @GetMapping()
-    public ResponseEntity<ApiResponse<List<UserDto>>> getUsers() {
-        return ResponseEntity.ok().body(new ApiResponse<>(HttpStatus.OK.value(), true, "Data fetched Successfully", userService.getUsers()));
+    public ResponseEntity<Response> getUsers() {
+        return userService.getUsers();
+    }
+
+    @PostMapping()
+    public ResponseEntity<? extends Response> addUsers(@RequestBody UserEntity user) {
+        return userService.createUser(user);
     }
 }

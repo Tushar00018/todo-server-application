@@ -3,7 +3,9 @@ package com.myTodoApplication.TodoApplication.controller;
 import com.myTodoApplication.TodoApplication.dto.TodoDto;
 import com.myTodoApplication.TodoApplication.entity.TodoEntity;
 import com.myTodoApplication.TodoApplication.service.TodoService;
-import com.myTodoApplication.TodoApplication.utility.ApiResponse;
+import com.myTodoApplication.TodoApplication.utility.response.ApiResponse;
+import com.myTodoApplication.TodoApplication.utility.response.Response;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -21,12 +23,12 @@ public class TodoController {
     }
 
     @GetMapping()
-    public ResponseEntity<ApiResponse<List<TodoEntity>>> getTodos() {
+    public ResponseEntity<Response> getTodos() {
         return todoService.getTodos();
     }
 
     @PostMapping()
-    public ResponseEntity<ApiResponse<Void>> addTodo(@RequestBody TodoDto todo) {
+    public ResponseEntity<Response> addTodo(@RequestBody TodoDto todo) {
         return todoService.addTodo(todo);
     }
 }
