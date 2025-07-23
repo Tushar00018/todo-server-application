@@ -9,6 +9,7 @@ import com.myTodoApplication.TodoApplication.utility.response.ApiResponse;
 import com.myTodoApplication.TodoApplication.utility.CommonUtilities;
 
 import com.myTodoApplication.TodoApplication.utility.response.Response;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
@@ -20,14 +21,11 @@ import java.util.List;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class TodoService {
 
     private final TodoRepo todoRepo;
     private final UserRepo userRepo;
-    public TodoService(TodoRepo todoRepo, UserRepo userRepo) {
-        this.todoRepo = todoRepo;
-        this.userRepo = userRepo;
-    }
 
     public ResponseEntity<Response> getTodos() {
         List<TodoEntity> todos = todoRepo.findAll();
