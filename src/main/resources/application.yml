@@ -1,0 +1,60 @@
+server:
+  port: ${PORT:8080}
+
+spring:
+  application:
+    name: TodoApplication
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/mySpringApplication
+    driverClassName: com.mysql.cj.jdbc.Driver
+    username: root
+    password: satalingol@2002
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+
+logging:
+  level:
+    com:
+      myTodoApplication: DEBUG
+    org:
+      hibernate:
+          SQL: DEBUG
+          type:
+            descriptor:
+              sql:
+                BasicBinder: TRACE
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+  file:
+    name: todo-server-app.log
+
+#    spring.application.name=TodoApplication
+#
+#    spring.datasource.url=jdbc:mysql://localhost:3306/mySpringApplication
+#    spring.datasource.driverClassName=com.mysql.cj.jdbc.Driver
+#    spring.datasource.username=root
+#    spring.datasource.password=satalingol@2002
+#
+#    spring.jpa.hibernate.ddl-auto=update
+#    spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL8Dialect
+#
+#    # Set log level for your app
+#    logging.level.com.myTodoApplication=DEBUG
+#
+#    # Log SQL statements via logger instead of console output
+#    logging.level.org.hibernate.SQL=DEBUG
+#
+#    # Show parameter values in logs (requires extra config)
+#    logging.level.org.hibernate.type.descriptor.sql.BasicBinder=TRACE
+#
+#    # Customize log pattern to include class name and thread
+#    logging.pattern.console=%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n
+#
+#    # Optional: log to file
+#    logging.file.name=todo-server-app.log

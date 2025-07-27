@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.naming.AuthenticationException;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -75,6 +76,19 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(ex.getStatusCode()).body(
                 new ErrorResponse(
                         ex.getStatusCode().value(),
+                        false,
+                        message
+                )
+        );
+    }
+
+    @ExceptionHandler(AuthenticationException.class)
+    public ResponseEntity<ErrorResponse> handleUnAuthorised(AuthenticationException ex) {
+        String message = ex.getMessage() != null ? ex.getMessage() : "Invalid username or password";
+        log.error(message);
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(
+                new ErrorResponse(
+                        HttpStatus.UNAUTHORIZED.value(),
                         false,
                         message
                 )

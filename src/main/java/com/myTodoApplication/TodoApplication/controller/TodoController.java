@@ -5,6 +5,7 @@ import com.myTodoApplication.TodoApplication.entity.TodoEntity;
 import com.myTodoApplication.TodoApplication.service.TodoService;
 import com.myTodoApplication.TodoApplication.utility.response.ApiResponse;
 import com.myTodoApplication.TodoApplication.utility.response.Response;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +28,7 @@ public class TodoController {
     }
 
     @PostMapping()
-    public ResponseEntity<Response> addTodo(@RequestBody TodoDto todo) {
+    public ResponseEntity<Response> addTodo(@RequestBody @Valid TodoDto todo) {
         return todoService.addTodo(todo);
     }
 }
