@@ -13,10 +13,10 @@ public class CorsConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("http://localhost:5173")
-                        .allowedMethods("GET", "POST", "PATCH", "DELETE")
-                        .allowedHeaders("Content-Type")
-                        .allowCredentials(true);
+                        .allowedOrigins("http://localhost:5173", "https://todo-client-application-tushar00018s-projects.vercel.app")
+                        .allowedMethods("GET", "POST", "PATCH", "DELETE", "OPTIONS")
+                        .allowedHeaders("Content-Type", "Authorization")
+                        .allowCredentials(false);
             }
         };
     }
