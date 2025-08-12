@@ -1,14 +1,11 @@
     package com.myTodoApplication.TodoApplication.Filter;
 
-    import com.myTodoApplication.TodoApplication.security.JwtUtil;
+    import com.myTodoApplication.TodoApplication.utility.Jwt;
     import jakarta.servlet.FilterChain;
     import jakarta.servlet.ServletException;
     import jakarta.servlet.http.HttpServletRequest;
     import jakarta.servlet.http.HttpServletResponse;
-    import jakarta.validation.constraints.NotNull;
     import lombok.RequiredArgsConstructor;
-    import org.springframework.beans.factory.annotation.Autowired;
-    import org.springframework.lang.NonNullApi;
     import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
     import org.springframework.security.core.context.SecurityContextHolder;
     import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
@@ -22,7 +19,7 @@
     @RequiredArgsConstructor
     public class JwtRequestFilter extends OncePerRequestFilter {
 
-        private final JwtUtil jwtUtil;
+        private final Jwt jwt;
 
         @Override
         protected void doFilterInternal(HttpServletRequest request,
@@ -34,8 +31,8 @@
             if (header != null && header.startsWith("Bearer ")) {
                 String token = header.substring(7);
 
-                if (jwtUtil.validateToken(token)) {
-                    String username = jwtUtil.extractUsername(token);
+                if (jwt.validateToken(token)) {
+                    String username = jwt.extractUsername(token);
 
                     UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
                             username, null, Collections.emptyList());

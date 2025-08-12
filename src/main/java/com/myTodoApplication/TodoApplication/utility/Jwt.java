@@ -1,4 +1,4 @@
-package com.myTodoApplication.TodoApplication.security;
+package com.myTodoApplication.TodoApplication.utility;
 
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
@@ -10,7 +10,7 @@ import java.security.Key;
 import java.util.Date;
 
 @Component
-public class JwtUtil {
+public class Jwt {
     private static final String SECRET_KEY = "mySuperSecretKeyForJwt12345678901234567890";
     private final Key key = Keys.hmacShaKeyFor(SECRET_KEY.getBytes());
     private final long EXPIRATION_TIME = 1000 * 60 * 60 * 24;

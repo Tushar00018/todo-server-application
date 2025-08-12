@@ -8,15 +8,16 @@ import com.myTodoApplication.TodoApplication.utility.response.Response;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@Lazy
 @RestController
-@RequestMapping("/api/v1/todo")
+@RequestMapping("/todo")
 @RequiredArgsConstructor
 public class TodoController {
 
