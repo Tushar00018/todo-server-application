@@ -11,6 +11,7 @@ import com.myTodoApplication.TodoApplication.utility.CommonUtilities;
 import com.myTodoApplication.TodoApplication.utility.response.Response;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +20,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
+@Lazy
 @Slf4j
 @Service
 @RequiredArgsConstructor

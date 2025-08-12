@@ -2,10 +2,11 @@ package com.myTodoApplication.TodoApplication.controller;
 
 import com.myTodoApplication.TodoApplication.entity.UserEntity;
 import com.myTodoApplication.TodoApplication.repository.UserRepo;
-import com.myTodoApplication.TodoApplication.security.JwtUtil;
+import com.myTodoApplication.TodoApplication.utility.Jwt;
 import com.myTodoApplication.TodoApplication.utility.response.ApiResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -17,13 +18,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.naming.AuthenticationException;
 
+@Lazy
 @RestController
-@RequestMapping("/api/v1/auth")
+@RequestMapping("auth")
 @RequiredArgsConstructor
 public class AuthController {
 
     private final UserRepo userRepo;
-    private final JwtUtil jwtUtil;
+    private final Jwt jwt;
     private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     @PostMapping("/register")
@@ -39,7 +41,7 @@ public class AuthController {
         if (user == null || !passwordEncoder.matches(loginRequest.getPassword(), user.getPassword())) {
             throw new BadCredentialsException("");
         }
-        String token = jwtUtil.generateToken(user.getUserName());
+        String token = jwt.generateToken(user.getUserName());
         return ResponseEntity.ok().body(new ApiResponse<>(HttpStatus.OK.value(), true, "Logged-In successfully" ,token));
     }
 }
